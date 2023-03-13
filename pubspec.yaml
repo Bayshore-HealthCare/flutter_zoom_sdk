@@ -15,7 +15,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   plugin_platform_interface: ^2.1.2
-  universal_html: ^2.0.8
+  universal_html: ^2.1.0
   js: ^0.6.5
 
 dev_dependencies:
