@@ -15,8 +15,8 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   plugin_platform_interface: ^2.1.2
-  js: ^0.6.3
-  crypto: ^3.0.1
+  universal_html: ^2.0.8
+  js: ^0.6.5
 
 dev_dependencies:
   flutter_lints: ^1.0.4
@@ -34,3 +34,6 @@ flutter:
       web:
         pluginClass: ZoomViewWeb
         fileName: flutter_zoom_web.dart
+
+  assets:
+    - assets/component_view.js

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_zoom_sdk/zoom_platform_view.dart';
+import 'package:universal_html/js.dart' as js;
 
 class ZoomView extends ZoomPlatform {
   final MethodChannel channel = const MethodChannel('com.evilratt/zoom_sdk');
@@ -112,5 +113,23 @@ class ZoomView extends ZoomPlatform {
     return await channel
         .invokeMethod<List>('meeting_details')
         .then<List>((List? value) => value ?? List.empty());
+  }
+
+  @override
+  Future<void> joinMeetingWeb(ZoomMeetingOptions options) async {
+    js.context.callMethod('startMeeting', [
+      options.signature,
+      //signature
+      options.sdkKey,
+      //sdk Key,
+      options.meetingId,
+      //Meeting Id
+      options.userName,
+      //Username
+      options.meetingPassword,
+      //Password,
+      options.meetingLink,
+      //Meeting Link,
+    ]);
   }
 }

@@ -137,13 +137,31 @@ class ZoomOptions {
 
 /// Basic Zoom Meeting Options required for plugin (WEB, iOS, Android)
 class ZoomMeetingOptions {
+  String? sdkKey;
+
+  /// SDK Key
+
   String? userId;
 
   /// Username For Join Meeting & Host Email For Start Meeting
+
   String? userPassword;
 
   /// Host Password For Start Meeting
+
+  String? meetingLink;
+
+  /// Meeting link
+
+  String? signature;
+
+  /// Signature
+
   String? displayName;
+
+  String? userName;
+
+  ///Username of the user
 
   /// Display Name
   String? meetingId;
@@ -193,7 +211,9 @@ class ZoomMeetingOptions {
     this.userId,
     this.userPassword,
     this.displayName,
+    this.signature,
     this.meetingId,
+    this.sdkKey,
     this.meetingPassword,
     this.disableDialIn,
     this.disableDrive,
@@ -207,6 +227,8 @@ class ZoomMeetingOptions {
     this.zoomAccessToken,
     this.jwtAPIKey,
     this.jwtSignature,
+    this.meetingLink,
+    this.userName,
   });
 }
 
