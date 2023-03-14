@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:universal_html/html.dart' as html;
-import 'dart:ui' as ui;
+import "package:flutter_zoom_sdk/webSupport/platform_view_registry.dart";
 
 class ZoomWebWrapper extends StatefulWidget {
   final Widget child;
@@ -28,7 +28,7 @@ class _ZoomWebWrapperState extends State<ZoomWebWrapper> {
   @override
   void initState() {
     super.initState();
-    ui.platformViewRegistry.registerViewFactory(
+    platformViewRegistry.registerViewFactory(
       zoomViewType,
       (int viewId) => mDiv,
     );
@@ -72,17 +72,16 @@ class _ZoomWebWrapperState extends State<ZoomWebWrapper> {
   }
 
   void onChildNodeAdded(html.Element parent, Function(html.Element) callback) {
-    final observer = html.MutationObserver((mutations, observer) {
-      for (final mutation in mutations) {
-        for (final node in mutation.addedNodes) {
-          if (node is html.Element) {
-            callback(node);
+      final observer = html.MutationObserver((mutations, observer) {
+        for (final mutation in mutations) {
+          for (final node in mutation.addedNodes) {
+            if (node is html.Element) {
+              callback(node);
+            }
           }
         }
-      }
-    });
-
-    observer.observe(parent, childList: true, subtree: true);
+      });
+      observer.observe(parent, childList: true, subtree: true);
   }
 
   html.Element justifyElement(html.Element element) {
