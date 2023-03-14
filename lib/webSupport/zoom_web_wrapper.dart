@@ -35,8 +35,9 @@ class _ZoomWebWrapperState extends State<ZoomWebWrapper> {
     setState(() {});
     onChildNodeAdded(mDiv, (childElement) {
       if (childElement.innerHtml != null) {
-        if (childElement.innerHtml!.contains("The meeting has not started") ||
-            childElement.innerHtml!.contains("Waiting for meeting to start") ||
+        if (
+            //childElement.innerHtml!.contains("The meeting has not started") ||
+            // childElement.innerHtml!.contains("Waiting for meeting to start") ||
             childElement.innerHtml!.contains("Connecting...")) {
           isVisible = true;
         } else if (childElement.innerHtml!
