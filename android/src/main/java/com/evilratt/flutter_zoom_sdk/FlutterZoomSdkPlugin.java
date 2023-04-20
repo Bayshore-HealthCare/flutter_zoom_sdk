@@ -186,34 +186,6 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
       return;
     }
 
-    ZoomSDKAuthenticationListener authenticationListener = new ZoomSDKAuthenticationListener() {
-
-      @Override
-      public void onZoomSDKLoginResult(long results) {
-        if (results != ZoomAuthenticationError.ZOOM_AUTH_ERROR_SUCCESS) {
-          sendReply(Arrays.asList("LOGIN ERROR", String.valueOf(results)));
-          return;
-        }
-        startMeeting(methodCall);
-      }
-
-      @Override
-      public void onZoomSDKLogoutResult(long l) {
-
-      }
-
-      @Override
-      public void onZoomIdentityExpired() {
-
-      }
-
-      @Override
-      public void onZoomAuthIdentityExpired() {
-
-      }
-    };
-
-
     if(zoomSDK.isLoggedIn()){
       startMeeting(methodCall);
     }
