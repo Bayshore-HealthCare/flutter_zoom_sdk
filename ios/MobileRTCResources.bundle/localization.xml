@@ -180,4 +180,16 @@
         <ID8 text="Fred"></ID8>
         <ID9 text="Bip"></ID9>
     </Indonesian>
+    <Dutch>
+        <ID0 text="Standaard"></ID0>
+        <ID1 text="Golven"></ID1>
+        <ID2 text="Discotheek"></ID2>
+        <ID3 text="Ontwaken"></ID3>
+        <ID4 text="Lentevreugde"></ID4>
+        <ID5 text="In het riet"></ID5>
+        <ID6 text="Middagzon"></ID6>
+        <ID7 text="Zacht ontwaken"></ID7>
+        <ID8 text="Fred"></ID8>
+        <ID9 text="Pieptoon"></ID9>
+    </Dutch>
 </language>

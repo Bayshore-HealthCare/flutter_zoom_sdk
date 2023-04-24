@@ -140,10 +140,6 @@ typedef NS_ENUM(NSUInteger, MobileRTCFeedbackType) {
  */
 @property (nonatomic, retain) NSString* _Nonnull       avatarPath;
 /*!
- @brief Unread messages in the meeting.
- */
-@property (nonatomic, assign) NSInteger        unread;
-/*!
  @brief User's video status in the meeting.
  */
 @property (nonatomic, retain) MobileRTCVideoStatus* _Nonnull videoStatus;
