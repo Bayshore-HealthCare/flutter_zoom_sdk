@@ -48,4 +48,9 @@ abstract class ZoomPlatform extends PlatformInterface {
   Future<List> meetinDetails() async {
     throw UnimplementedError('meetingDetails() has not been implemented.');
   }
+
+  /// Leave meeting
+  Future<List> leaveMeeting() async {
+    throw UnimplementedError('leaveMeeting() has not been implemented.');
+  }
 }

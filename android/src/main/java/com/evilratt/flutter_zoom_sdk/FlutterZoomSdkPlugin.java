@@ -85,6 +85,9 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
       case "meeting_details":
         meetingDetails(result);
         break;
+      case "leaveMeeting":
+        leaveMeeting();
+        break;
       default:
         result.notImplemented();
     }
@@ -366,5 +369,9 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
   @Override
   public void onDetachedFromActivity() {
     this.activity = null;
+  }
+
+  public void leaveMeeting() {
+        service.leaveCurrentMeeting(true);
   }
 }

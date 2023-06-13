@@ -113,4 +113,11 @@ class ZoomView extends ZoomPlatform {
         .invokeMethod<List>('meeting_details')
         .then<List>((List? value) => value ?? List.empty());
   }
+
+  @override
+  Future<List> leaveMeeting() async {
+    return await channel
+        .invokeMethod<List>('leaveMeeting')
+        .then<List>((List? value) => value ?? List.empty());
+  }
 }

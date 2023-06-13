@@ -55,10 +55,16 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
               self.meetingStatus(call: call, result: result)
           case "meeting_details":
               self.meetingDetails(call: call, result: result)
+          case "leaveMeeting":
+              self.leaveMeeting()
           default:
               result(FlutterMethodNotImplemented)
           }
       }
+
+        public func leaveMeeting() {
+            MobileRTC.shared().getMeetingService()?.leaveMeeting(with: .leave)
+        }
 
         //Initializing the Zoom SDK for iOS
         public func initZoom(call: FlutterMethodCall, result: @escaping FlutterResult)  {
