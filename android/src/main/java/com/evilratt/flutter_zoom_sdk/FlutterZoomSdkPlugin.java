@@ -372,6 +372,7 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
   }
 
   public void leaveMeeting() {
+    ZoomSDK zoomSDK = ZoomSDK.getInstance();
     MeetingService meetingService = zoomSDK.getMeetingService();
     meetingService.leaveCurrentMeeting(true);
   }
