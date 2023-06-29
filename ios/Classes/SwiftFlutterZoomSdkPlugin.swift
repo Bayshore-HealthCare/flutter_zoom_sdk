@@ -35,6 +35,8 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
               self.meetingStatus(call: call, result: result)
           case "meeting_details":
               self.meetingDetails(call: call, result: result)
+           case "leaveMeeting":
+              self.leaveMeeting()
           default:
               result(FlutterMethodNotImplemented)
           }
