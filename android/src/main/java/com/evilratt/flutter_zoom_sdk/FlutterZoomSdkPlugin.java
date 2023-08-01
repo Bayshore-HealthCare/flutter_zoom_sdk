@@ -123,8 +123,7 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
     }
 
     ZoomSDKInitParams initParams = new ZoomSDKInitParams();
-    initParams.appKey = options.get("appKey");
-    initParams.appSecret = options.get("appSecret");
+    initParams.jwtToken = options.get("jwtToken");
     initParams.domain = options.get("domain");
     initParams.enableLog = true;
 
