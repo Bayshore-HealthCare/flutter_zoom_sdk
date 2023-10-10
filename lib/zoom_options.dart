@@ -135,7 +135,8 @@ class ZoomOptions {
 class ZoomMeetingOptions {
   String? userId;
 
-  /// Username For Join Meeting & Host Email For Start Meeting
+  /// User id for uniquely identifying the user for the backend side
+
   String? userPassword;
 
   /// Host Password For Start Meeting

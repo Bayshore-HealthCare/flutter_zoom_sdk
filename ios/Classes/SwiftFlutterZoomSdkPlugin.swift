@@ -174,9 +174,12 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
                 let joinMeetingParameters = MobileRTCMeetingJoinParam()
                 
                 //Setting up Custom Join Meeting parameter
-                joinMeetingParameters.userName = arguments["userId"]!!
+                joinMeetingParameters.userName = arguments["displayName"]!!
                 joinMeetingParameters.meetingNumber = arguments["meetingId"]!!
-
+                let hasUserId = arguments["userId"]! != nil
+                if hasUserId {
+                joinMeetingParameters.customerKey = arguments["userId"]!!
+                }
                 let hasPassword = arguments["meetingPassword"]! != nil
                 if hasPassword {
                     joinMeetingParameters.password = arguments["meetingPassword"]!!
