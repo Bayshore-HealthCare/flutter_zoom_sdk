@@ -19,6 +19,7 @@ class ZoomView extends ZoomPlatform {
     }
 
     optionMap.putIfAbsent("domain", () => options.domain);
+    optionMap.putIfAbsent("language", () => options.language);
     return await channel
         .invokeMethod<List>('init', optionMap)
         .then<List>((List? value) => value ?? List.empty());

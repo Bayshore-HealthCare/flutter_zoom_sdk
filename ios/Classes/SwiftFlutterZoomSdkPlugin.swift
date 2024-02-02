@@ -80,6 +80,9 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
             context.enableLog = true
             context.bundleResPath = pluginBundlePath
             MobileRTC.shared().initialize(context)
+            if let lang = arguments["language"] {
+                       MobileRTC.shared().setLanguage(lang)
+            }
 
             let auth = MobileRTC.shared().getAuthService()
             auth?.delegate = self.authenticationDelegate.onAuth(result)
