@@ -34,6 +34,8 @@ import us.zoom.sdk.ZoomSDKInitParams;
 import us.zoom.sdk.ZoomSDKInitializeListener;
 import io.flutter.plugin.common.MethodChannel.Result;
 
+import java.util.Locale;
+
 /**
  * FlutterZoomPlugin
  */
@@ -45,6 +47,7 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
     private Context context;
     private EventChannel meetingStatusChannel;
     private InMeetingService inMeetingService;
+    private String locale = "en";
 
 
     @Override
@@ -129,6 +132,7 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
         ZoomSDKInitParams initParams = new ZoomSDKInitParams();
         initParams.jwtToken = options.get("jwtToken");
         initParams.domain = options.get("domain");
+        locale = options.get("language");
         initParams.enableLog = true;
 
         final InMeetingNotificationHandle handle = (context, intent) -> {
@@ -205,7 +209,6 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
         Map<String, String> options = methodCall.arguments();
 
         ZoomSDK zoomSDK = ZoomSDK.getInstance();
-
         if (!zoomSDK.isInitialized()) {
             System.out.println("Not initialized!!!!!!");
 
@@ -237,9 +240,11 @@ public class FlutterZoomSdkPlugin implements FlutterPlugin, MethodChannel.Method
         params.displayName = options.get("displayName");
         params.meetingNo = options.get("meetingId");
         params.password = options.get("meetingPassword");
-
+        if (locale != null) {
+            Locale newLocale = new Locale(locale, locale == "fr" ? "FR" : "US");
+            zoomSDK.setSdkLocale(context, newLocale);
+        }
         meetingService.joinMeetingWithParams(context, params, opts);
-
         result.success(true);
     }
 
