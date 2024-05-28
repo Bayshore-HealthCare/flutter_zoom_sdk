@@ -14,14 +14,12 @@ class ZoomView extends ZoomPlatform {
   Future<List> initZoom(ZoomOptions options) async {
     var optionMap = <String, String?>{};
 
-    if (options.appKey != null) {
-      optionMap.putIfAbsent("appKey", () => options.appKey!);
-    }
-    if (options.appSecret != null) {
-      optionMap.putIfAbsent("appSecret", () => options.appSecret!);
+    if (options.jwtToken != null) {
+      optionMap.putIfAbsent("jwtToken", () => options.jwtToken);
     }
 
     optionMap.putIfAbsent("domain", () => options.domain);
+    optionMap.putIfAbsent("language", () => options.language);
     return await channel
         .invokeMethod<List>('init', optionMap)
         .then<List>((List? value) => value ?? List.empty());
@@ -32,6 +30,7 @@ class ZoomView extends ZoomPlatform {
   Future<List> startMeetingNormal(ZoomMeetingOptions options) async {
     var optionMap = <String, String?>{};
     optionMap.putIfAbsent("userId", () => options.userId);
+    optionMap.putIfAbsent("displayName", () => options.displayName);
     optionMap.putIfAbsent("userPassword", () => options.userPassword);
     optionMap.putIfAbsent("meetingId", () => options.meetingId);
     optionMap.putIfAbsent("disableDialIn", () => options.disableDialIn);
@@ -53,6 +52,7 @@ class ZoomView extends ZoomPlatform {
   Future<bool> joinMeeting(ZoomMeetingOptions options) async {
     var optionMap = <String, String?>{};
     optionMap.putIfAbsent("userId", () => options.userId);
+    optionMap.putIfAbsent("displayName", () => options.displayName);
     optionMap.putIfAbsent("meetingId", () => options.meetingId);
     optionMap.putIfAbsent("meetingPassword", () => options.meetingPassword);
     optionMap.putIfAbsent("disableDialIn", () => options.disableDialIn);
@@ -74,6 +74,7 @@ class ZoomView extends ZoomPlatform {
   Future<List> startMeeting(ZoomMeetingOptions options) async {
     var optionMap = <String, String?>{};
     optionMap.putIfAbsent("userId", () => options.userId);
+    optionMap.putIfAbsent("displayName", () => options.displayName);
     optionMap.putIfAbsent("userPassword", () => options.userPassword);
     optionMap.putIfAbsent("disableDialIn", () => options.disableDialIn);
     optionMap.putIfAbsent("disableDrive", () => options.disableDrive);
@@ -111,6 +112,13 @@ class ZoomView extends ZoomPlatform {
   Future<List> meetinDetails() async {
     return await channel
         .invokeMethod<List>('meeting_details')
+        .then<List>((List? value) => value ?? List.empty());
+  }
+
+  @override
+  Future<List> leaveMeeting() async {
+    return await channel
+        .invokeMethod<List>('leaveMeeting')
         .then<List>((List? value) => value ?? List.empty());
   }
 }

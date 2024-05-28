@@ -49,34 +49,26 @@ Future<void> checkAndDownloadSDK(String location) async {
 
   if (!exists) {
     await downloadFile(
-        Uri.parse('https://www.dropbox.com/s/92oi2u1jdd4hf47/MobileRTC?dl=1'),
+        Uri.parse('https://www.dropbox.com/scl/fi/5fug7wh603ok4gg6qqjvz/MobileRTC?rlkey=4o6xv00oc5872uj6p0i8gvmsf&st=p1azlbyy&dl=1'),
         iosSDKFile);
   }
 
   var iosSimulateSDKFile = location +
-      '/ios/MobileRTC.xcframework/ios-x86_64-simulator/MobileRTC.framework/MobileRTC';
+      '/ios/MobileRTC.xcframework/ios-arm64_x86_64-simulator/MobileRTC.framework/MobileRTC';
   exists = await File(iosSimulateSDKFile).exists();
 
   if (!exists) {
     await downloadFile(
-        Uri.parse('https://www.dropbox.com/s/2wm3fu18ewseu9c/mobilertc.aar?dl=1'),
+        Uri.parse('https://www.dropbox.com/scl/fi/n7l21lke18rdaug3141lx/MobileRTC?rlkey=5vrbo3y3zosfgoxmja04gh9ll&st=ofti3fks&dl=1'),
         iosSimulateSDKFile);
   }
 
-  var androidCommonLibFile = location + '/android/libs/commonlib.aar';
-  exists = await File(androidCommonLibFile).exists();
-  if (!exists) {
-    await downloadFile(
-        Uri.parse(
-            'https://www.dropbox.com/s/qp3cztgv8i2kyhy/commonlib.aar?dl=1'),
-        androidCommonLibFile);
-  }
   var androidRTCLibFile = location + '/android/libs/mobilertc.aar';
   exists = await File(androidRTCLibFile).exists();
   if (!exists) {
     await downloadFile(
         Uri.parse(
-            'https://www.dropbox.com/s/2wm3fu18ewseu9c/mobilertc.aar?dl=1'),
+            'https://www.dropbox.com/scl/fi/yfo2py990dlekerkt1ye0/mobilertc.aar?rlkey=2on2p50ed8z6igk8qb3p0uvdv&st=k4fwf05o&dl=1'),
         androidRTCLibFile);
   }
 }

@@ -1,9 +1,6 @@
 name: flutter_zoom_sdk
-description: Zoom SDK from ZOOM ported to flutter as plugin with all necessary features and with Null Safety which is implementation by EvilRATT
-version: 1.1.0+4
-homepage: https://github.com/evilrat/flutter_zoom_sdk
-repository: https://github.com/evilrat/flutter_zoom_sdk
-issue_tracker: https://github.com/evilrat/flutter_zoom_sdk/issues
+description: Zoom SDK from ZOOM ported to flutter as plugin with all necessary features and with Null Safety
+version: 1.6.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

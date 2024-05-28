@@ -35,6 +35,8 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
               self.meetingStatus(call: call, result: result)
           case "meeting_details":
               self.meetingDetails(call: call, result: result)
+           case "leaveMeeting":
+              self.leaveMeeting()
           default:
               result(FlutterMethodNotImplemented)
           }
@@ -55,10 +57,16 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
               self.meetingStatus(call: call, result: result)
           case "meeting_details":
               self.meetingDetails(call: call, result: result)
+          case "leaveMeeting":
+              self.leaveMeeting()
           default:
               result(FlutterMethodNotImplemented)
           }
       }
+
+        public func leaveMeeting() {
+            MobileRTC.shared().getMeetingService()?.leaveMeeting(with: .leave)
+        }
 
         //Initializing the Zoom SDK for iOS
         public func initZoom(call: FlutterMethodCall, result: @escaping FlutterResult)  {
@@ -72,14 +80,14 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
             context.enableLog = true
             context.bundleResPath = pluginBundlePath
             MobileRTC.shared().initialize(context)
+            if let lang = arguments["language"] {
+                       MobileRTC.shared().setLanguage(lang)
+            }
 
             let auth = MobileRTC.shared().getAuthService()
             auth?.delegate = self.authenticationDelegate.onAuth(result)
-            if let appKey = arguments["appKey"] {
-                auth?.clientKey = appKey
-            }
-            if let appSecret = arguments["appSecret"] {
-                auth?.clientSecret = appSecret
+            if let appSecret = arguments["jwtToken"] {
+                auth?.jwtToken = appSecret
             }
 
             auth?.sdkAuth()
@@ -169,9 +177,12 @@ public class SwiftFlutterZoomSdkPlugin: NSObject, FlutterPlugin,FlutterStreamHan
                 let joinMeetingParameters = MobileRTCMeetingJoinParam()
                 
                 //Setting up Custom Join Meeting parameter
-                joinMeetingParameters.userName = arguments["userId"]!!
+                joinMeetingParameters.userName = arguments["displayName"]!!
                 joinMeetingParameters.meetingNumber = arguments["meetingId"]!!
-
+                let hasUserId = arguments["userId"]! != nil
+                if hasUserId {
+                joinMeetingParameters.customerKey = arguments["userId"]!!
+                }
                 let hasPassword = arguments["meetingPassword"]! != nil
                 if hasPassword {
                     joinMeetingParameters.password = arguments["meetingPassword"]!!
