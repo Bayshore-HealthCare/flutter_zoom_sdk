@@ -3,6 +3,7 @@ version '1.0'
 
 buildscript {
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }
@@ -14,12 +15,12 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
 
         flatDir {
             dirs project(':flutter_zoom_sdk').file('libs')
-//            dirs 'libs'
         }
     }
 }
@@ -28,12 +29,12 @@ apply plugin: 'com.android.library'
 
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 34
     namespace 'com.evilratt.flutter_zoom_sdk'
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 32
+        minSdkVersion 24
+        targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -41,6 +42,17 @@ android {
     }
     lintOptions {
         disable 'InvalidPackage'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -52,8 +64,11 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.11.0"
     implementation "com.airbnb.android:lottie:4.0.0"
     implementation "com.google.android:flexbox:2.0.1"
-
-    api(name: 'commonlib', ext: 'aar')
+    implementation "androidx.window:window:1.1.0"
+    implementation "androidx.window:window-java:1.1.0"
+    implementation "androidx.core:core-splashscreen:1.0.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
     api(name: 'mobilertc', ext: 'aar')
 }
 
