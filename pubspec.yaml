@@ -12,7 +12,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   plugin_platform_interface: ^2.1.2
-  js: ^0.6.3
+  js: ^0.7.1
   crypto: ^3.0.1
 
 dev_dependencies:
