@@ -69,7 +69,8 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.1"
     implementation "androidx.constraintlayout:constraintlayout:2.1.0"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.7.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
     api(name: 'mobilertc', ext: 'aar')
 }
 
